@@ -1,9 +1,10 @@
 class DetailsController < ApplicationController
   before_action :set_detail, only: %i[ show edit update destroy ]
+  before_action :set_person
 
   # GET /details or /details.json
   def index
-    @details = Detail.all
+    @details = @person.details
     respond_to do |format|
       format.html
       format.json { render json: @details }
@@ -20,7 +21,7 @@ class DetailsController < ApplicationController
 
   # GET /details/new
   def new
-    @detail = Detail.new
+    @detail = @person.details.new
   end
 
   # GET /details/1/edit
@@ -29,11 +30,11 @@ class DetailsController < ApplicationController
 
   # POST /details or /details.json
   def create
-    @detail = Detail.new(detail_params)
+    @detail = @person.details.new(detail_params)
 
     respond_to do |format|
       if @detail.save
-        format.html { redirect_to detail_url(@detail), notice: "Detail was successfully created." }
+        format.html { redirect_to person_details_url(@detail.person), notice: "Detail was successfully created." }
         format.json { render :show, status: :created, location: @detail }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +47,7 @@ class DetailsController < ApplicationController
   def update
     respond_to do |format|
       if @detail.update(detail_params)
-        format.html { redirect_to detail_url(@detail), notice: "Detail was successfully updated." }
+        format.html { redirect_to person_details_url(@detail), notice: "Detail was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -58,7 +59,7 @@ class DetailsController < ApplicationController
     @detail.destroy!
 
     respond_to do |format|
-      format.html { redirect_to details_url, notice: "Detail was successfully destroyed." }
+      format.html { redirect_to person_details_url, notice: "Detail was successfully destroyed." }
     end
   end
 
@@ -66,6 +67,10 @@ class DetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_detail
       @detail = Detail.find(params[:id])
+    end
+
+    def set_person
+      @person = Person.find(params[:person_id])
     end
 
     # Only allow a list of trusted parameters through.

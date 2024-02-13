@@ -1,4 +1,6 @@
 <%= turbo_frame_tag 'details_frame' do %>
+  <%= link_to "Add New Detail", new_person_detail_path(@person), data: {turbo_frame: "_top"}%>
+
   <% if @person.details.any? %>
     <h3>Details for <%= @person.name %>:</h3>
     <ul>
@@ -7,9 +9,10 @@
         <li><%= detail.age %></li>
         <li><%= detail.phone %></li>
         <li><%= detail.email %></li>
+        <hr>
       <% end %>
     </ul>
   <% else %>
-    <p>No details found for <%= @person.name %>.</p>
+    <p>Addition of details pending for <%= @person.name %>.</p>
   <% end %>
 <% end %>

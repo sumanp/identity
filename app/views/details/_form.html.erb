@@ -1,4 +1,4 @@
-<%= form_with(model: detail) do |form| %>
+<%= form_with(model: [@person, @detail]) do |form| %>
   <% if detail.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(detail.errors.count, "error") %> prohibited this detail from being saved:</h2>
@@ -10,6 +10,18 @@
       </ul>
     </div>
   <% end %>
+
+  <%= form.label :title, style: "display: block" %>
+  <%= form.text_field :title %>
+
+  <%= form.label :age, style: "display: block" %>
+  <%= form.number_field :age %>
+
+  <%= form.label :phone, style: "display: block" %>
+  <%= form.text_field :phone %>
+
+  <%= form.label :email, style: "display: block" %>
+  <%= form.text_field :email %>
 
   <div>
     <%= form.submit %>
