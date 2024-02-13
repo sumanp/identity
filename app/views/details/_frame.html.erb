@@ -1,5 +1,7 @@
 <%= turbo_frame_tag 'details_frame' do %>
-  <%= link_to "Add New Detail", new_person_detail_path(@person), data: {turbo_frame: "_top"}%>
+  <%= link_to "Add New Detail", new_person_detail_path(@person), data: {turbo_frame: "_top"} %>
+  <%= link_to "Edit Person", edit_person_path(@person), data: {turbo_frame: "_top"} %>
+  <%= link_to "Delete Person", person_path(@person, format: :html), data: {turbo_method: :delete} %>
 
   <% if @person.details.any? %>
     <h3>Details for <%= @person.name %>:</h3>
@@ -9,6 +11,8 @@
         <li><%= detail.age %></li>
         <li><%= detail.phone %></li>
         <li><%= detail.email %></li>
+        <li><%= link_to "Edit", edit_person_detail_path(@person, detail), data: {turbo_frame: "_top"} %></li>
+        <%= link_to "Delete", person_detail_path(@person, detail, format: :html), data: {turbo_method: :delete} %>
         <hr>
       <% end %>
     </ul>

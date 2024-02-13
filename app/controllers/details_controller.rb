@@ -59,7 +59,7 @@ class DetailsController < ApplicationController
     @detail.destroy!
 
     respond_to do |format|
-      format.html { redirect_to person_details_url, notice: "Detail was successfully destroyed." }
+      format.html { redirect_to people_url, notice: "Detail was successfully destroyed." }
     end
   end
 
