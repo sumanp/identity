@@ -16,4 +16,5 @@ Note: Tests are limited due to time constraints. Additional tests can be written
 
 **Possible improvements**
 - Bootstrap could be installed for better UI
-- Entire app could be turned SPA with Hotwire 
+- Entire app could be turned SPA with Hotwire
+- Delete should automatically remove the person/detail without the need to reload
