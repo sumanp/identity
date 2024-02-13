@@ -1,14 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>People</h1>
+<%= link_to "New person", new_person_path %>
 
-<div id="people">
-  <% @people.each do |person| %>
-    <%= render person %>
-    <p>
-      <%= link_to "Show this person", person %>
-    </p>
-  <% end %>
+<div class="row">
+  <div class="column">
+    <div class="vertical-menu">
+      <% @people.each do |person| %>
+        <%= link_to person.name, person_path(person), remote: true, data: { turbo_frame: 'details_frame' } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="column">
+    <%= turbo_frame_tag 'details_frame' %>
+    <%= turbo_stream_from 'details_frame' %>
+  </div>
 </div>
 
-<%= link_to "New person", new_person_path %>

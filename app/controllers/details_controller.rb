@@ -13,7 +13,7 @@ class DetailsController < ApplicationController
   # GET /details/1 or GET /details/1.json
   def show
     respond_to do |format|
-      format.html
+      format.html { render turbo_stream: turbo_stream.replace('details_frame', partial: 'details/frame', locals: { person: @person }) }
       format.json { render json: @detail }
     end
   end

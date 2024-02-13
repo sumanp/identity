@@ -1,0 +1,15 @@
+<%= turbo_frame_tag 'details_frame' do %>
+  <% if @person.details.any? %>
+    <h3>Details for <%= @person.name %>:</h3>
+    <ul>
+      <% @person.details.each do |detail| %>
+        <li><%= detail.title %></li>
+        <li><%= detail.age %></li>
+        <li><%= detail.phone %></li>
+        <li><%= detail.email %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No details found for <%= @person.name %>.</p>
+  <% end %>
+<% end %>
