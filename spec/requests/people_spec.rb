@@ -39,8 +39,7 @@ RSpec.describe "People API", type: :request do
 
       it "returns a not found message" do
         response_body = JSON.parse(response.body)
-        
-        expect(response_body["message"]).to eq("Person not found")
+        expect(response_body["error"]).to eq("Not Found")
       end
 
       it "returns status code 404" do

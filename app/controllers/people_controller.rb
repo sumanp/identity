@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ edit update destroy ]
+  before_action :set_person, only: %i[ show edit update destroy ]
 
   # GET /people or GET /people.json
   def index
@@ -12,18 +12,9 @@ class PeopleController < ApplicationController
 
   # GET /people/1 or GET /people/1.json
   def show
-    person = Person.find_by(id: params[:id])
-
-    if person
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: person }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to root_path, notice: "Person not found" }
-        format.json { render json: { message: "Person not found" }, status: :not_found }
-      end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @person }
     end
   end
 
